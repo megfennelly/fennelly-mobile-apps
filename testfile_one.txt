@@ -1,1 +1,3 @@
 test file one
+
+I am practicing editing files with Git and GitHub
