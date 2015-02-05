@@ -16,6 +16,13 @@ public class Actor {
 	private int dy; //change in y speed
 	private Paint paint; //paint object
 	
+	//ints for width and height
+	private int w;
+	private int h;
+	
+	//boolean visible to check if draw
+	private boolean isVisable = true;
+	
 	// Context
 	private Context aContext;
 	private int costume;
@@ -27,6 +34,8 @@ public class Actor {
 		p = new Point(x, y);
 		c = col; 
 		s = size; //assign size
+		w = s;//set width
+		h = s; //set height
 		paint = new Paint(); //creates paint object
 		paint.setColor(c);//sets paint color
 		dx = 0;
@@ -38,9 +47,15 @@ public class Actor {
 }// end constructor 
 	
 	// Acessors and Modifiers 
+	
+	public boolean getVisable() {
+		return isVisable;
+	}
+	
 	public int getX() {
 		return p.x;
 	}
+
 	
 	public int getY() {
 		return p.y;
@@ -58,6 +73,8 @@ public class Actor {
 	public void setColor(int col){
 		c = col;
 		paint.setColor(c);
+		
+
 		}
 	
 	public void goTo(int x, int y) {
@@ -69,6 +86,9 @@ public class Actor {
 		dx = speed;
 	}
 	
+	public void setVisable(boolean v) {
+		isVisable = v;
+	}
 	public void setDY(int speed) {
 		dy = speed;
 }
@@ -92,6 +112,16 @@ public class Actor {
 		if (p.y > c.getHeight() || p.y < 0) {
 			dy = dy * -1;
 		}
+
+	}
+	
+	//Returns h and w 
+	public int getHeight() {
+		return h;
+	}
+	
+	public int getWidth() {
+		return w;
 	}
 	
 	public void bounceActor(Actor a) {
@@ -110,7 +140,11 @@ public class Actor {
 	public void setCostume(int cost) {
 		costume = cost;
 		graphic = (BitmapDrawable)aContext.getResources().getDrawable(costume);
+		//set width and height based on graphic
+		w = graphic.getBitmap().getWidth();
+		h = graphic.getBitmap().getHeight();
 	}
+	
 	
 	public Bitmap getBitmap() {
 		return graphic.getBitmap();
@@ -118,6 +152,42 @@ public class Actor {
 	
 	public void draw(Canvas c) {
 		c.drawBitmap(getBitmap(), p.x, p.y, paint);
+	}
+	
+	//Function to return true or false if touching another ACtor
+	public boolean isTouching(Actor a) {
+		boolean result = false;
+		
+		if ((p.x+w > a.getX() && p.x < a.getX() + a.getWidth()) && (p.y +h >a.getY()&& p.y+h < a.getY() +a.getHeight())) {
+	result = true;
+		}
+	return result;
+}
+ //Bounce off Function
+	public void bounceOff() {
+		dx = dx * -1;
+		dy = dy * -1;
+	}
+	
+	public void bounceUp() {
+		dy = dy * -1;
+	}
+//modifiers for width and height
+	public void setWidth(int width) {
+		w = width;
+	}
+	
+	public void setHeight(int height) {
+		h = height;
+	}
+	
+	//Function to draw a Rectangle
+	public void drawRect(Canvas c) {
+		if (isVisable) {
+		c.drawRect(p.x, p.y, p.x+w, p.y+h, paint);
+	}
+		
+	
 	}
 }
 
