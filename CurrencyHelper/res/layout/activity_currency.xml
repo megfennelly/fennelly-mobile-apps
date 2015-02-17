@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/editCurrency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:duplicateParentState="true"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/buttonDollar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true" 
+            android:onClick="handleClick"
+            android:text="Dollar" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/buttonEuro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="handleClick"
+            android:text="Euro" />
+
+    </TableRow>
+
+    <Button
+        android:id="@+id/buttonMenu2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="handleClick"
+        android:text="Menu" />
+
+</LinearLayout>
